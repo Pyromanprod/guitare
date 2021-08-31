@@ -1,3 +1,6 @@
+<?php include_once("part/connexion.php");
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -14,7 +17,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <!--MON CSS-->
     <link rel="stylesheet" href="css/style.css">
-    <title>Supprimer fabricant</title>
+    <title>Supprimer catégories</title>
     <link rel="icon" href="favicon.ico">
     <!--POLLYFILL-->
     <!--[if lt IE 9]>
@@ -25,7 +28,41 @@
 <?php include_once("part/navbar.php"); ?>
 
 <body>
-    <h1>GESTION CATEGORIE</h1>
+    <div class="container">
+
+        <h1>GESTION CATEGORIE</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $categorie = "SELECT categorie.nom
+                            FROM `categorie`
+                                WHERE 1";
+                $categorie = $bdd->prepare($categorie);
+                $categorie->execute();
+                $categorie = $categorie->fetchAll();
+                // echo '<pre>';
+                // var_dump($categorie);
+                foreach ($categorie as $key => $value) {
+                ?>
+                    <tr>
+                        <td><?php echo $value['nom'] ?></td>
+                    </tr>
+
+
+                <?php
+                }
+
+                ?>
+            </tbody>
+        </table>
+
+
+    </div>
 
 
 
