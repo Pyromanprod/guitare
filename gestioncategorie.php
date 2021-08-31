@@ -39,7 +39,7 @@
             </thead>
             <tbody>
                 <?php
-                $categorie = "SELECT categorie.nom
+                $categorie = "SELECT categorie.nom_categorie
                             FROM `categorie`
                                 WHERE 1";
                 $categorie = $bdd->prepare($categorie);
@@ -50,7 +50,7 @@
                 foreach ($categorie as $key => $value) {
                 ?>
                     <tr>
-                        <td><?php echo $value['nom'] ?></td>
+                        <td><?php echo $value['nom_categorie'] ?></td>
                     </tr>
 
 
