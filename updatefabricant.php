@@ -1,4 +1,7 @@
-<?php
+<?php if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 include_once("part/connexion.php");
 
 
@@ -35,7 +38,7 @@ include_once("part/connexion.php");
     <div class="container">
 
         <div class="row mt-5">
-            <form action="" method="">
+            <form action="traitement/updatefabricant.php" method="post">
 
                 <fieldset class="border p-2 form-group bg-light needs-validation">
                     <legend class="w-auto float-none fs-5 mx-auto">Modifier
@@ -47,10 +50,11 @@ include_once("part/connexion.php");
                         <?php
                         try {
                             $nom = $_GET['nom'];
+                            $_SESSION['updatefab'] = $nom;
                             $fabricant = "SELECT fabricant.nationalite, fabricant.date_creation 
                             AS 'date'
                                 FROM `fabricant` 
-                                    WHERE fabricant.nom = :nom";
+                                    WHERE fabricant.nom_fabricant = :nom";
                             $fabricant = $bdd->prepare($fabricant);
                             $fabricant->bindValue(':nom', "$nom");
                             $fabricant->execute();
@@ -65,11 +69,11 @@ include_once("part/connexion.php");
                                 </div>
                                 <div class="mb-3 col-4">
                                     <label for="nationalite" class="form-label">Nationalité :</label>
-                                    <input type="text" class="form-control" id="nationalite" name="nationalite">
+                                    <input type="text" class="form-control" id="nationalite" name="nationalite" value="<?php echo $nationalite ?>">
                                 </div>
                                 <div class="mb-3 col-4">
                                     <label for="date_creation" class="form-label">Date de création :</label>
-                                    <input type="date" class="form-control" id="date_creation" name="date_creation">
+                                    <input type="date" class="form-control" id="date_creation" name="date_creation" value="<?php echo $date ?>">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary col-4 mx-auto">Envoyer</button>

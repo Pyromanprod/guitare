@@ -41,9 +41,9 @@
             </thead>
             <tbody>
                 <?php
-                $fabricant = "SELECT fabricant.nom, fabricant.nationalite, fabricant.date_creation 
+                $fabricant = "SELECT fabricant.nom_fabricant, fabricant.nationalite, fabricant.date_creation
                         AS 'date'
-                            FROM `fabricant` 
+                            FROM `fabricant`
                                 WHERE 1";
                 $fabricant = $bdd->prepare($fabricant);
                 $fabricant->execute();
@@ -53,13 +53,13 @@
                 foreach ($fabricant as $key => $value) {
                 ?>
                     <tr>
-                        <td><?php echo $value['nom'] ?></td>
+                        <td><?php echo $value['nom_fabricant'] ?></td>
                         <td><?php echo $value['nationalite'] ?></td>
                         <td><?php echo $value['date'] ?></td>
                         <td>
-                            <a href="updatefabricant.php?nom=<?php echo $value['nom']; ?>" title="Modifier fabricant"><i class="far fa-edit me-3"></i></a>
+                            <a href="updatefabricant.php?nom=<?php echo $value['nom_fabricant']; ?>" title="Modifier fabricant"><i class="far fa-edit me-3"></i></a>
 
-                            <a href="traitement/deletefabricant.php" title="Supprimer fabricant"><i class="fas fa-trash-alt"></i></a>
+                            <a href="traitement/deletefabricant.php?nom=<?php echo $value['nom_fabricant']; ?>" title="Supprimer fabricant"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
 
