@@ -2,5 +2,5 @@
     session_start();
 }
 if (isset($_GET['nom'])) {
-    # code...
+    echo $_GET['nom'];
 }
