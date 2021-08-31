@@ -1,3 +1,6 @@
+<?php include_once("part/connexion.php");
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -25,12 +28,56 @@
 <?php include_once("part/navbar.php"); ?>
 
 <body>
-    <h1>GESTION GUITARES</h1>
+    <div class="container">
 
-    <?php
+        <h1>GESTION Guitare</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Année de production</th>
+                    <th scope="col">prix</th>
+                    <th scope="col">Nombre de corde</th>
+                    <th scope="col">Nom de la catégorie</th>
+                    <th scope="col">Nom du fabricant</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $guitare = "SELECT guitare.nom_model, guitare.annee_prod, guitare.prix, guitare.nb_corde, fabricant.nom_fabricant, categorie.nom_categorie
+                            FROM `guitare`
+                            JOIN categorie
+                                ON guitare.categorie_id = categorie.id_categorie
+                            JOIN fabricant
+                                ON guitare.fabricant_id = fabricant.id WHERE 1";
+                $guitare = $bdd->prepare($guitare);
+                $guitare->execute();
+                $guitare = $guitare->fetchAll();
+                // echo '<pre>';
+                // var_dump($categorie);
+                foreach ($guitare as $key => $value) {
+                ?>
+                    <tr>
+                        <td></td>
+                        <td><?php echo $value['nom_model'] ?></td>
+                        <td><?php echo $value['annee_prod'] ?></td>
+                        <td><?php echo $value['prix'] ?></td>
+                        <td><?php echo $value['nb_corde'] ?></td>
+                        <td><?php echo $value['nom_categorie'] ?></td>
+                        <td><?php echo $value['nom_fabricant'] ?></td>
+                    </tr>
 
 
-    ?>
+                <?php
+                }
+
+                ?>
+            </tbody>
+        </table>
+
+    </div>
 
 
 
