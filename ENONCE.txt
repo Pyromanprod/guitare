@@ -1,0 +1,51 @@
+Un magasin d'instruments vous demande de mettre en place un système pour gérer son stock de guitares à la fois pour son magasin, 
+mais également pour la mise en place d'un futur site:
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+La BDD devra contenir 3 tables :
+- 1 pour les guitares :
+	Pour chaque guitare, il faut pouvoir afficher les informations suivantes :
+		- son fabricant, le nom du modèle, l'année de production, le prix, la catégorie, le nombre de cordes,
+		- ainsi qu'une image d'illustration pour chaque guitare (mais celle-ci peut être facultative pour l'instant !)
+
+- 1 pour les fabricants:
+	Elle contient son nom, sa nationalité ainsi que la date de création de celui-ci
+
+- 1 pour la catégorie: (exemple : électrique, acoustique, basse...)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+On doit pouvoir :
+- afficher toutes les guitares avec leurs fabricants et leurs catégories ("Gestion des guitares") 
+  (attention: afficher les dates au format JJ/MM/AAAA) sur une page de résumé.
+- afficher tous les fabricants ("Gestion des fabricants")
+- afficher toutes les catégories (Gestion des catégories")
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+On doit pouvoir également :
+- ajouter, modifier et supprimer (avec demande de confirmation) aussi bien une guitare qu'un fabricant ou une catégorie.
+	(attention: le formulaire de modification est pré-rempli)
+Si l'on ajoute une image pour une guitare, il faut qu'elle soit renommée automatiquement sous la forme "image_id-de-la-guitare".
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+On doit pouvoir supprimer des guitares (attention à supprimer aussi l'éventuelle image), des fabricants ou des catégories.
+Interdiction :
+	- d'utiliser l'effacement en cascade en BDD.
+	- d'avoir des guitares sans fabricants ou sans catégories.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Groupe 1 => Virgil, Arthur, Corentin
+
+Groupe 2 => Aude, Loic, Gauthier
+
+Groupe 3 => Enzo, Sarah, David L
+
+Groupe 4 => Alex, Emilie, Mickael F
+
+Groupe 5 => Etienne, Mickael N, Jerome
+
+Groupe 6 => Renaud, David S, Francis

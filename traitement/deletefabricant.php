@@ -17,6 +17,7 @@ if (isset($_GET['nom'])) {
             $requete = $bdd->prepare($requete);
             $requete->bindValue(':nom', $_GET['nom']);
             $requete->execute();
+            header('location:../gestionfabricant.php');
         } catch (\Throwable $th) {
             echo $th;
         }
