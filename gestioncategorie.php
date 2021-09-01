@@ -53,7 +53,7 @@
                     <tr>
                         <td><?php echo $value['nom_categorie'] ?></td>
 
-                        <td>icone modifer et icone supprimer</td>
+                        <td>icone modifer et icone supprimé</td>
 
                     </tr>
 
