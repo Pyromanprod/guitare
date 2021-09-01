@@ -18,7 +18,7 @@ if (isset($_POST['nom_model']) && !empty($_POST['nom_model'])) {
 
                 try {
                     // on prépare la requete SQL
-                    $requete = "UPDATE `guitare` SET `nom_model`=:nom_model,`annee_prod`=:annee,`prix`=:prix,`nb_corde`=:nb_corde WHERE guitare.nom_model = :anciennom";
+                    $requete = "UPDATE `guitare` SET `nom_model`=:nom_model,`annee_prod`=:annee,`prix`=:prix,`nb_corde`=:nb_corde, `image`=:img WHERE guitare.nom_model = :anciennom";
                     // On prépare les valeurs qui remplacent les marqueurs
                     $nom = $_POST['nom_model'];
                     $annee = $_POST['annee_prod'];
@@ -32,11 +32,29 @@ if (isset($_POST['nom_model']) && !empty($_POST['nom_model'])) {
                     $requete->bindValue(':prix', $prix);
                     $requete->bindValue(':nb_corde', $nb_corde);
                     $requete->bindValue(':anciennom', $anciennom);
+
                     // on exécute la requete
 
-                    $requete->execute();
+                    //envoyer l'image au serveur dans le dossier "image"addcategorie.php
+                    // récupérer les infos de l'image
+                    $image = $_FILES['image'];
+                    // contrôle de l'image "Renaud le plus beau"
+                    if ((($image['type'] === "image/jpeg") || ($image['type'] === "image/png") || ($image['type'] === "image/gif")) && ($image['size'] < 5242880)) {
+                        $nouveau_nom = time() . '.' . pathinfo($image['name'])['extension'];
+                        $requete->bindValue(':img', $nouveau_nom);
 
-                    header('location:../gestionguitare.php');
+                        // enregistrement de l'image dans le dossier de sauvegarde
+                        if (move_uploaded_file($image['tmp_name'], '../image/' . $nouveau_nom)) {
+
+                            $requete->execute();
+
+                            header('location:../gestionguitare.php');
+                        } else {
+                            echo ('Echec de l\'upload');
+                        }
+                    } else {
+                        echo "erreur";
+                    }
                 } catch (\Throwable $th) {
                     echo $th;
                 }
@@ -62,3 +80,29 @@ if (isset($_POST['nom_model']) && !empty($_POST['nom_model'])) {
 
     return false;
 }
+// if (isset($_GET['recherche']) && !empty($_GET['recherche'])) {
+
+//     // le champ pseudo est renseigné
+//     if (isset($_GET['nom_model']) && !empty($_GET['nom_model'])) {
+
+//         $pseudo = $_GET['nom_model'];
+//         //  Le pseudo est inconnu
+//         if (file_exists('profil/' . $pseudo . '.txt')) {
+
+//             // Lire dans le bon fichier (correspondant au pseudo) le nom de l'image
+//             $nom_image = file_get_contents('profil/' . $pseudo . '.txt');
+
+//             // Affichage les infos (pseudo, image) avec l'image
+//             echo ('<p>Votre pseudo : ' . $pseudo . '</p>');
+//             echo ('<p>Votre fichier : ' . $nom_image . '</p>');
+//             echo ('<img width="400px" src="upload/' . $nom_image . '">');
+//         } else {
+//             echo ('Ce pseudo n\'existe pas');
+//         }
+//     } else {
+//         echo ('Le Pseudo est obligatoire');
+//     }
+// }
+
+// Bouton de retour
+// echo '<p><a href="index.php">RETOUR</a></p>';

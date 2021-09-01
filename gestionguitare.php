@@ -31,58 +31,69 @@
     <div class="container">
 
         <h1>GESTION Guitare</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Année de production</th>
-                    <th scope="col">prix</th>
-                    <th scope="col">Nombre de corde</th>
-                    <th scope="col">Nom de la catégorie</th>
-                    <th scope="col">Nom du fabricant</th>
-                    <th></th>
+        <div class="row">
 
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $guitare = "SELECT guitare.nom_model, guitare.annee_prod, guitare.prix, guitare.nb_corde, fabricant.nom_fabricant, categorie.nom_categorie
+
+
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Année de production</th>
+                        <th scope="col">prix</th>
+                        <th scope="col">Nombre de corde</th>
+                        <th scope="col">Nom de la catégorie</th>
+                        <th scope="col">Nom du fabricant</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $guitare = "SELECT guitare.nom_model, guitare.annee_prod, guitare.prix, guitare.nb_corde, fabricant.nom_fabricant, categorie.nom_categorie, guitare.image
                             FROM `guitare`
                             JOIN categorie
                                 ON guitare.categorie_id = categorie.id_categorie
                             JOIN fabricant
                                 ON guitare.fabricant_id = fabricant.id WHERE 1";
-                $guitare = $bdd->prepare($guitare);
-                $guitare->execute();
-                $guitare = $guitare->fetchAll();
-                // echo '<pre>';
-                // var_dump($categorie);
-                foreach ($guitare as $key => $value) {
-                ?>
-                    <tr>
-                        <td></td>
-                        <td><?php echo $value['nom_model'] ?></td>
-                        <td><?php echo $value['annee_prod'] ?></td>
-                        <td><?php echo $value['prix'] ?></td>
-                        <td><?php echo $value['nb_corde'] ?></td>
-                        <td><?php echo $value['nom_categorie'] ?></td>
-                        <td><?php echo $value['nom_fabricant'] ?></td>
-                        <td>
-                            <a href="updateguitare.php?modele=<?php echo $value['nom_model'] ?>" title="Modifier guitare"><i class="far fa-edit me-3"></i></a>
+                    $guitare = $bdd->prepare($guitare);
+                    $guitare->execute();
+                    $guitare = $guitare->fetchAll();
 
-                            <a href="traitement/deleteguitare.php" title="Supprimer guitare"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
+                    // echo '<pre>';
+                    // var_dump($categorie);
+                    foreach ($guitare as $key => $value) {
+                        $src_img = $value['image'];
+                        if ($src_img == NULL) {
+                            $src_img = "imageDeClefDeSol.png";
+                        }
+                    ?>
+                        <tr>
+                            <div class="row">
+                                <td class="col-2 px-0 mx-0"><img src="image/<?php echo $src_img ?>" class="w-100"></td>
+                            </div>
+                            <td><?php echo $value['nom_model'] ?></td>
+                            <td><?php echo $value['annee_prod'] ?></td>
+                            <td><?php echo $value['prix'] ?></td>
+                            <td><?php echo $value['nb_corde'] ?></td>
+                            <td><?php echo $value['nom_categorie'] ?></td>
+                            <td><?php echo $value['nom_fabricant'] ?></td>
+                            <td>
+                                <a href=" updateguitare.php?modele=<?php echo $value['nom_model'] ?>" title="Modifier guitare"><i class="far fa-edit me-3"></i></a>
+
+                                <a href="traitement/deleteguitare.php" title="Supprimer guitare"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
 
 
-                <?php
-                }
+                    <?php
+                    }
 
-                ?>
-            </tbody>
-        </table>
-
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 

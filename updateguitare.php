@@ -38,7 +38,7 @@ $_SESSION['updateguitare'] = $_GET['modele'];
     <div class="container">
 
         <div class="row mt-5">
-            <form action="traitement/updateguitare.php" method="post">
+            <form action="traitement/updateguitare.php" method="post" enctype="multipart/form-data">
 
                 <fieldset class="border p-2 form-group bg-light needs-validation">
                     <legend class="w-auto float-none fs-5 mx-auto">Modifier <?php echo $_GET['modele']; ?>
@@ -62,7 +62,21 @@ $_SESSION['updateguitare'] = $_GET['modele'];
                     <input type="submit">
 
                     <div class="row">
+                        <!-- <form method="GET" action="traitement.php">
 
+
+                            <fieldset>
+                                <legend>Rechercher une image : </legend>
+
+                                <p>
+                                    <label for="nom_model">Nom mdèle: </label>
+                                    <input type="text" name="nom_model">
+                                </p>
+
+                                <input type="submit" name="recherche" value="Rechercher">
+                            </fieldset>
+
+                        </form> -->
 
 
                     </div>
