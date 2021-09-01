@@ -71,6 +71,50 @@
             </tbody>
         </table>
 
+        <form action="traitement/addfabricant.php" method="POST" class="bg-light">
+            <fieldset class="border p-2 form-group bg-light needs-validation row ">
+                <legend class="w-auto float-none fs-5 mx-auto">Ajouter fabricant
+                </legend>
+                <div class="mb-3 col-4">
+                    <label for="nom" class="form-label">Nom :</label>
+                    <input type="text" class="form-control" id="nom" name="nom" required>
+                </div>
+                <div class="mb-3 col-4">
+                    <label for="nationalite" class="form-label">Nationalite :</label>
+                    <input type="text" class="form-control" id="nationalite" name="nationalite" required>
+                </div>
+                <div class="mb-3 col-4">
+                    <label for="date_create" class="form-label">Date de création :</label>
+                    <input type="date" class="form-control" id="date_create" name="date_create" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary col-5 mx-auto" name="envoyer">Ajouter</button>
+                <div class="col-12">
+                    <p><?php if (isset($_GET['erreur'])) {
+
+                            switch ($_GET['erreur']) {
+                                case '0':
+                                    echo "merci de passer par le formulaire";
+                                    break;
+                                case '1':
+                                    echo "Nom obligatoire";
+                                    break;
+                                case '2':
+                                    echo "date de création obligatoire";
+                                    break;
+                                case '3':
+                                    echo "date de création obligatoire";
+                                    break;
+                                    echo "nationalité obligatoire";
+                                default:
+                                    # code...
+                                    break;
+                            }
+                        } ?></p>
+                </div>
+            </fieldset>
+        </form>
+
 
     </div>
 
