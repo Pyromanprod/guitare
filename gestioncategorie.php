@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <!--MON CSS-->
     <link rel="stylesheet" href="css/style.css">
-    <title>Supprimer catégories</title>
+    <title>Gestion catégories</title>
     <link rel="icon" href="favicon.ico">
     <!--POLLYFILL-->
     <!--[if lt IE 9]>
@@ -53,7 +53,11 @@
                     <tr>
                         <td><?php echo $value['nom_categorie'] ?></td>
 
-                        <td>icone modifer et icone supprimé</td>
+                        <td>
+                            <a href="updatecategorie.php?nom_categorie=<?php echo $value['nom_categorie']; ?>" title="Modifier catégorie"><i class="far fa-edit me-3"></i></a>
+
+                            <a href="traitement/deletecategorie.php?nom_categorie=<?php echo $value['nom_categorie']; ?>" title="Supprimer catégorie"><i class="fas fa-trash-alt"></i></a>
+                        </td>
 
                     </tr>
 
