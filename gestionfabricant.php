@@ -35,7 +35,7 @@
                 <tr>
                     <th scope="col">Nom</th>
                     <th scope="col">Nationalité</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">Date de creation</th>
                     <th></th>
                 </tr>
             </thead>
