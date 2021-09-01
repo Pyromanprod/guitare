@@ -61,6 +61,15 @@
             </tbody>
         </table>
 
+        <form action="" method="" class="row">
+            <div class="mb-3 col-5 mx-auto">
+                <label for="nom_categorie" class="form-label">Ajouter catégorie :</label>
+                <input type="text" class="form-control" id="nom_categorie" name="nom_categorie">
+            </div>
+
+            <button type="submit" class="btn btn-primary" class="col-4">Envoyer</button>
+        </form>
+
     </div>
 
 
