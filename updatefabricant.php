@@ -51,6 +51,7 @@ include_once("part/connexion.php");
                         try {
                             $nom = $_GET['nom'];
                             $_SESSION['updatefab'] = $nom;
+                            // var_dump($_SESSION);
                             $fabricant = "SELECT fabricant.nationalite, fabricant.date_creation 
                             AS 'date'
                                 FROM `fabricant` 
