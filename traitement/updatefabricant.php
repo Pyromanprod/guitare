@@ -10,6 +10,7 @@ if (isset($_POST['nom']) && !empty($_POST['nom'])) {
         $nouveaunom = filter_var($_POST['nom'], FILTER_SANITIZE_STRING);
         $anciennom = $_SESSION['updatefab'];
 
+
         $requete = "UPDATE `fabricant` SET `nom_fabricant`=:nouveaunom WHERE fabricant.nom_fabricant = '$anciennom'";
         $requete = $bdd->prepare($requete);
         $requete->bindValue(':nouveaunom', $nouveaunom);
