@@ -77,7 +77,7 @@ include_once("part/connexion.php");
                                     <input type="date" class="form-control" id="date_creation" name="date_creation" value="<?php echo $date ?>">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary col-4 mx-auto">Envoyer</button>
+                                <button type="submit" class="btn btn-secondary col-4 mx-auto">Envoyer</button>
 
 
 

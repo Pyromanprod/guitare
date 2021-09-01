@@ -92,7 +92,7 @@
                     <input type="date" class="form-control" id="date_create" name="date_create" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary col-5 mx-auto" name="envoyer">Ajouter</button>
+                <button type="submit" class="btn btn-secondary col-5 mx-auto" name="envoyer">Ajouter</button>
                 <div class="col-12">
                     <p><?php if (isset($_GET['erreur'])) {
 

@@ -84,7 +84,7 @@
                     <div class="row">
 
                         <div class="col-5 mx-auto text-center">
-                            <button type="submit" class="btn btn-primary" class="col-4">Envoyer</button>
+                            <button type="submit" class="btn btn-secondary" class="col-4">Envoyer</button>
 
                         </div>
 
