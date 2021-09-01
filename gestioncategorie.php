@@ -66,37 +66,54 @@
 
         <!!-- Formulaire gestion des catégories -->
 
-            <form action="traitement/addcategorie.php" method="POST" class="row">
-                <div class="mb-3 col-5 mx-auto">
-                    <label for="nom_categorie" class="form-label">Ajouter catégorie :</label>
-                    <input type="text" class="form-control" id="nom_categorie" name="nom_categorie">
-                </div>
+            <form action="traitement/addcategorie.php" method="POST">
+                <fieldset class="border p-2 form-group bg-light needs-validation">
+                    <legend class="w-auto float-none fs-5 mx-auto">Ajouter une catégorie</legend>
+                    <div class="row">
 
-                <button type="submit" class="btn btn-primary" class="col-4">Envoyer</button>
+                        <div class="mb-3 col-5 mx-auto">
+                            <label for="nom_categorie" class="form-label">Ajouter catégorie :</label>
+                            <input type="text" class="form-control" id="nom_categorie" name="nom_categorie">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-5 mx-auto text-center">
+                            <button type="submit" class="btn btn-primary" class="col-4">Envoyer</button>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <p>
+                            <?php
+                            if (isset($_GET['message'])) {
+                                switch ($_GET['message']) {
+                                    case '1':
+                                        echo ('Remplir le champ !');
+                                        break;
+                                    case '2':
+                                        echo ('36 caractères maximum !');
+                                        break;
+                                    case '3':
+                                        echo ('La catégorie existe déjà !');
+                                        break;
+                                    case '4':
+                                        echo ('Nouvelle catégorie créée');
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            ?>
+                        </p>
+                    </div>
+                </fieldset>
             </form>
 
     </div>
 
-    <?php
-    if (isset($_GET['message'])) {
-        switch ($_GET['message']) {
-            case '1':
-                echo ('Remplir le champ !');
-                break;
-            case '2':
-                echo ('36 caractères maximum !');
-                break;
-            case '3':
-                echo ('La catégorie existe déjà !');
-                break;
-            case '4':
-                echo ('Nouvelle catégorie créée');
-                break;
-            default:
-                break;
-        }
-    }
-    ?>
+
 
 
 
