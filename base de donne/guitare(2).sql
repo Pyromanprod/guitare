@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 01 sep. 2021 à 06:05
+-- Généré le : mer. 01 sep. 2021 à 11:27
 -- Version du serveur : 5.7.35
 -- Version de PHP : 8.0.9
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `guitare`
 --
-CREATE DATABASE IF NOT EXISTS `guitare` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `guitare`;
 
 -- --------------------------------------------------------
 
@@ -29,12 +27,10 @@ USE `guitare`;
 -- Structure de la table `categorie`
 --
 
-DROP TABLE IF EXISTS `categorie`;
-CREATE TABLE IF NOT EXISTS `categorie` (
-  `id_categorie` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nom_categorie` varchar(36) NOT NULL,
-  PRIMARY KEY (`id_categorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `categorie` (
+  `id_categorie` int(10) UNSIGNED NOT NULL,
+  `nom_categorie` varchar(36) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -43,7 +39,8 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 INSERT INTO `categorie` (`id_categorie`, `nom_categorie`) VALUES
 (1, 'acoustique'),
 (2, 'basse'),
-(3, 'electrique');
+(3, 'electrique'),
+(5, 'electronique');
 
 -- --------------------------------------------------------
 
@@ -51,14 +48,12 @@ INSERT INTO `categorie` (`id_categorie`, `nom_categorie`) VALUES
 -- Structure de la table `fabricant`
 --
 
-DROP TABLE IF EXISTS `fabricant`;
-CREATE TABLE IF NOT EXISTS `fabricant` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `fabricant` (
+  `id` int(10) UNSIGNED NOT NULL,
   `nom_fabricant` varchar(36) NOT NULL,
   `nationalite` varchar(30) NOT NULL,
-  `date_creation` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `date_creation` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `fabricant`
@@ -67,7 +62,8 @@ CREATE TABLE IF NOT EXISTS `fabricant` (
 INSERT INTO `fabricant` (`id`, `nom_fabricant`, `nationalite`, `date_creation`) VALUES
 (1, 'Lag', 'FR', '1930-05-24'),
 (2, 'Vigier', 'FR', '1980-08-17'),
-(3, 'Francis', 'USA', '1910-02-20');
+(3, 'Francis', 'USA', '1910-02-20'),
+(4, 'Gibson', 'USA', '1984-02-16');
 
 -- --------------------------------------------------------
 
@@ -75,20 +71,16 @@ INSERT INTO `fabricant` (`id`, `nom_fabricant`, `nationalite`, `date_creation`) 
 -- Structure de la table `guitare`
 --
 
-DROP TABLE IF EXISTS `guitare`;
-CREATE TABLE IF NOT EXISTS `guitare` (
-  `id_guitare` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `guitare` (
+  `id_guitare` int(10) UNSIGNED NOT NULL,
   `nom_model` varchar(36) NOT NULL,
   `annee_prod` int(11) NOT NULL,
   `prix` float NOT NULL,
   `nb_corde` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `fabricant_id` int(10) UNSIGNED NOT NULL,
-  `categorie_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id_guitare`),
-  KEY `fabricant_id` (`fabricant_id`,`categorie_id`),
-  KEY `categorie_id` (`categorie_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `categorie_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `guitare`
@@ -97,6 +89,54 @@ CREATE TABLE IF NOT EXISTS `guitare` (
 INSERT INTO `guitare` (`id_guitare`, `nom_model`, `annee_prod`, `prix`, `nb_corde`, `image`, `fabricant_id`, `categorie_id`) VALUES
 (1, 'premiereguitare', 2020, 2000, 5, NULL, 1, 2),
 (2, 'deuxiemeguitare', 1920, 50000, 1, NULL, 2, 1);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`id_categorie`),
+  ADD UNIQUE KEY `nom_categorie` (`nom_categorie`);
+
+--
+-- Index pour la table `fabricant`
+--
+ALTER TABLE `fabricant`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nom_fabricant` (`nom_fabricant`);
+
+--
+-- Index pour la table `guitare`
+--
+ALTER TABLE `guitare`
+  ADD PRIMARY KEY (`id_guitare`),
+  ADD KEY `fabricant_id` (`fabricant_id`,`categorie_id`),
+  ADD KEY `categorie_id` (`categorie_id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `id_categorie` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `fabricant`
+--
+ALTER TABLE `fabricant`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `guitare`
+--
+ALTER TABLE `guitare`
+  MODIFY `id_guitare` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées
