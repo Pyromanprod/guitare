@@ -41,6 +41,7 @@
                     <th scope="col">Nombre de corde</th>
                     <th scope="col">Nom de la catégorie</th>
                     <th scope="col">Nom du fabricant</th>
+                    <th></th>
 
                 </tr>
             </thead>
@@ -67,6 +68,11 @@
                         <td><?php echo $value['nb_corde'] ?></td>
                         <td><?php echo $value['nom_categorie'] ?></td>
                         <td><?php echo $value['nom_fabricant'] ?></td>
+                        <td>
+                            <a href="updateguitare.php?modele=<?php echo $value['nom_model'] ?>" title="Modifier guitare"><i class="far fa-edit me-3"></i></a>
+
+                            <a href="traitement/deleteguitare.php" title="Supprimer guitare"><i class="fas fa-trash-alt"></i></a>
+                        </td>
                     </tr>
 
 
