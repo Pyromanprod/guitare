@@ -105,6 +105,9 @@
                                 case '3':
                                     echo "date de création obligatoire";
                                     break;
+                                case '4':
+                                    echo "format date invalid";
+                                    break;
                                     echo "nationalité obligatoire";
                                 default:
                                     # code...
