@@ -15,7 +15,7 @@ if (verif()) {
     $date = strtotime($_POST['date_create']);
     $date_create = strftime("%Y-%m-%d", $date);
     try {
-        $requete = "INSERT INTO `fabricant`(`nom_fabricant`, `nationalite`, `date_creation`) 
+        $requete = "INSERT INTO `fabricant`(`nom_fabricant`, `nationalite`, `date_creation`)
                         VALUES (:nom,:nationalite,:date_create)";
         $requete = $bdd->prepare($requete);
 

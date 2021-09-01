@@ -51,6 +51,9 @@
                 ?>
                     <tr>
                         <td><?php echo $value['nom_categorie'] ?></td>
+
+                        <td>icone1 et icone</td>
+
                     </tr>
 
 
@@ -63,38 +66,37 @@
 
         <!!-- Formulaire gestion des catégories -->
 
-        <form action="traitement/addcategorie.php" method="POST" class="row">
-            <div class="mb-3 col-5 mx-auto">
-                <label for="nom_categorie" class="form-label">Ajouter catégorie :</label>
-                <input type="text" class="form-control" id="nom_categorie" name="nom_categorie">
-            </div>
+            <form action="traitement/addcategorie.php" method="POST" class="row">
+                <div class="mb-3 col-5 mx-auto">
+                    <label for="nom_categorie" class="form-label">Ajouter catégorie :</label>
+                    <input type="text" class="form-control" id="nom_categorie" name="nom_categorie">
+                </div>
 
-            <button type="submit" class="btn btn-primary" class="col-4">Envoyer</button>
-        </form>
+                <button type="submit" class="btn btn-primary" class="col-4">Envoyer</button>
+            </form>
 
     </div>
 
-<?php
-if (isset($_GET['message']) ) {
-    switch ($_GET['message']) {
-        case'1':
-            echo ('Remplir le champ !');
-            break;
-        case'2':
-            echo ('36 caractères maximum !');
-            break;
-        case'3':
-            echo ('La catégorie existe déjà !');
-            break;
-        case'4':
-            echo ('Nouvelle catégorie créée');
-            break;
-        default:
-            break;
-
+    <?php
+    if (isset($_GET['message'])) {
+        switch ($_GET['message']) {
+            case '1':
+                echo ('Remplir le champ !');
+                break;
+            case '2':
+                echo ('36 caractères maximum !');
+                break;
+            case '3':
+                echo ('La catégorie existe déjà !');
+                break;
+            case '4':
+                echo ('Nouvelle catégorie créée');
+                break;
+            default:
+                break;
+        }
     }
-}
-?>
+    ?>
 
 
 
