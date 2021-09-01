@@ -51,11 +51,15 @@
                 // echo '<pre>';
                 // var_dump($fabricant);
                 foreach ($fabricant as $key => $value) {
+
+
+                    $date_create = strtotime($value['date']);
+                    $date_create = strftime("%d-%m-%Y", $date_create);
                 ?>
                     <tr>
                         <td><?php echo $value['nom_fabricant'] ?></td>
                         <td><?php echo $value['nationalite'] ?></td>
-                        <td><?php echo $value['date'] ?></td>
+                        <td><?php echo $date_create ?></td>
                         <td>
                             <a href="updatefabricant.php?nom=<?php echo $value['nom_fabricant']; ?>" title="Modifier fabricant"><i class="far fa-edit me-3"></i></a>
 

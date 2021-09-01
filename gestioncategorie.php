@@ -35,6 +35,7 @@
             <thead>
                 <tr>
                     <th scope="col">Nom</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -52,7 +53,7 @@
                     <tr>
                         <td><?php echo $value['nom_categorie'] ?></td>
 
-                        <td>icone1 et icone</td>
+                        <td>icone modifer et icone supprimer</td>
 
                     </tr>
 
