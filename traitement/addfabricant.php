@@ -15,7 +15,7 @@ function verif()
                 if (isset($_POST['nationalite']) && !empty($_POST['nationalite'])) {
 
 
-                    echo "coucou";
+                    echo "salut";
                 } else {
                     header('location:../gestionfabricant.php?erreur=3');
 
