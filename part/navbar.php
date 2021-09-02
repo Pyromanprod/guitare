@@ -22,6 +22,7 @@
                             <li><a class="dropdown-item" href="gestionguitare.php">Guitares</a></li>
                             <li><a class="dropdown-item" href="gestionfabricant.php">Fabricants</a></li>
                             <li><a class="dropdown-item" href="gestioncategorie.php">Catégories</a></li>
+                            <li><a class="dropdown-item" href="ajoutguitare.php">ajout guitare</a></li>
                         </ul>
                     </li>
                 </ul>

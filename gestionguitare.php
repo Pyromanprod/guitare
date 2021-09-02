@@ -80,7 +80,7 @@
                             <td><?php echo $value['nom_categorie'] ?></td>
                             <td><?php echo $value['nom_fabricant'] ?></td>
                             <td>
-                                <a href=" updateguitare.php?modele=<?php echo $value['nom_model'] ?>" title="Modifier guitare"><i class="far fa-edit me-3"></i></a>
+                                <a href="updateguitare.php?modele=<?php echo $value['nom_model'] ?>" title="Modifier guitare"><i class="far fa-edit me-3"></i></a>
 
                                 <a href="traitement/deleteguitare.php" title="Supprimer guitare"><i class="fas fa-trash-alt"></i></a>
                             </td>

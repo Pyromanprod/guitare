@@ -18,30 +18,40 @@ if (isset($_POST['nom_model']) && !empty($_POST['nom_model'])) {
 
                 try {
                     // on prépare la requete SQL
-                    $requete = "UPDATE `guitare` SET `nom_model`=:nom_model,`annee_prod`=:annee,`prix`=:prix,`nb_corde`=:nb_corde, `image`=:img WHERE guitare.nom_model = :anciennom";
+                    $requete = "UPDATE `guitare` SET `nom_model`=:nom_model,`annee_prod`=:annee,`prix`=:prix,`nb_corde`=:nb_corde WHERE guitare.nom_model = :anciennom";
                     // On prépare les valeurs qui remplacent les marqueurs
                     $nom = $_POST['nom_model'];
                     $annee = $_POST['annee_prod'];
                     $prix = $_POST['prix'];
                     $nb_corde = $_POST['nb_corde'];
                     $anciennom = $_SESSION['updateguitare'];
+                    try {
+                        $requete = $bdd->prepare($requete);
+                        $requete->bindValue(':nom_model', $nom);
+                        $requete->bindValue(':annee', $annee);
+                        $requete->bindValue(':prix', $prix);
+                        $requete->bindValue(':nb_corde', $nb_corde);
+                        $requete->bindValue(':anciennom', $anciennom);
+                        $requete->execute();
+                        // die('ici');
+                        // on exécute la requete
+                        //code...
+                    } catch (\Throwable $th) {
+                        echo $th;
+                    }
 
-                    $requete = $bdd->prepare($requete);
-                    $requete->bindValue(':nom_model', $nom);
-                    $requete->bindValue(':annee', $annee);
-                    $requete->bindValue(':prix', $prix);
-                    $requete->bindValue(':nb_corde', $nb_corde);
-                    $requete->bindValue(':anciennom', $anciennom);
 
-                    // on exécute la requete
-
-                    //envoyer l'image au serveur dans le dossier "image"addcategorie.php
                     // récupérer les infos de l'image
                     $image = $_FILES['image'];
                     // contrôle de l'image "Renaud le plus beau"
                     if ((($image['type'] === "image/jpeg") || ($image['type'] === "image/png") || ($image['type'] === "image/gif")) && ($image['size'] < 5242880)) {
+                        //créer un nouveau UNIQUE nom pour l'image
                         $nouveau_nom = time() . '.' . pathinfo($image['name'])['extension'];
+                        $requete = "UPDATE `guitare` SET `image`=:img WHERE guitare.nom_model = :nom ";
+                        $requete = $bdd->prepare($requete);
                         $requete->bindValue(':img', $nouveau_nom);
+                        $requete->bindValue(':nom', $nom);
+
 
                         // enregistrement de l'image dans le dossier de sauvegarde
                         if (move_uploaded_file($image['tmp_name'], '../image/' . $nouveau_nom)) {
@@ -53,7 +63,7 @@ if (isset($_POST['nom_model']) && !empty($_POST['nom_model'])) {
                             echo ('Echec de l\'upload');
                         }
                     } else {
-                        echo "erreur";
+                        header('location:../gestionguitare.php');
                     }
                 } catch (\Throwable $th) {
                     echo $th;

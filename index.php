@@ -32,7 +32,23 @@
         <div class="row">
 
             <h1>Guitare shop</h1>
+            <p class="text-dark bg-danger">
+                <?php
+                if (isset($_GET['error'])) {
 
+                    switch ($_GET['error']) {
+                        case '0':
+                            echo "Le modéle de guitare existe déja !!!!!";
+                            break;
+
+                        default:
+                            # code...
+                            break;
+                    }
+                }
+
+                ?>
+            </p>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -53,7 +69,10 @@
                             JOIN categorie
                                 ON guitare.categorie_id = categorie.id_categorie
                             JOIN fabricant
-                                ON guitare.fabricant_id = fabricant.id WHERE 1";
+                                ON guitare.fabricant_id = fabricant.id 
+                                WHERE 1 
+                                ORDER BY guitare.prix DESC";
+                    //ORDER BY tri les données par prix (guitare.prix) decroissant (DESC)
                     $guitare = $bdd->prepare($guitare);
                     $guitare->execute();
                     $guitare = $guitare->fetchAll();
